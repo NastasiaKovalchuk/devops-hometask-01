@@ -87,6 +87,7 @@ jobs:
     needs: [checks, build, deploy, verify]
     if: always()
     runs-on: ubuntu-latest
+    
     steps:
       - name: Send Telegram Notification
         run: |
