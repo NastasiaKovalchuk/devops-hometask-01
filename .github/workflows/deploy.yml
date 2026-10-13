@@ -28,15 +28,15 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Log in to Docker Hub
-        run: echo "${{ secrets.DOCKERHUB_PASS }}" | docker login -u "${{ vars.DOCKERHUB_USER }}" --password-stdin
+        run: echo "${{ secrets.DOCKER_PASS }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
       - name: Build and push image
         env:
-          IMAGE_SHA: ${{ vars.DOCKERHUB_USER }}/${{ matrix.image_name }}:sha-${{ github.sha }}
-          IMAGE_LATEST: ${{ vars.DOCKERHUB_USER }}/${{ matrix.image_name }}:latest
+          IMAGE_SHA: ${{ secrets.DOCKER_USER }}/${{ matrix.image_name }}:sha-${{ github.sha }}
+          IMAGE_LATEST: ${{ secrets.DOCKER_USER }}/${{ matrix.image_name }}:latest
         run: |
           docker buildx build \
             --platform linux/amd64 \
