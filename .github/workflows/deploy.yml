@@ -17,11 +17,13 @@ jobs:
           - name: backend
             image_name: todo-back
             dockerfile: back/Dockerfile
+            context: back
             build_args: ""
 
           - name: frontend
             image_name: todo-front
             dockerfile: front/Dockerfile
+            context: front
             build_args: "--build-arg VITE_API_URL=${{ vars.VITE_API_URL }}"
 
     steps:
