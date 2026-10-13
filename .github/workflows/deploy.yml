@@ -1,8 +1,8 @@
-name: Deploy
+name: Deploy Week4
 
 on:
   push:
-    branches: [main]
+    branches: [week4]
 
 jobs:
   checks:
@@ -18,7 +18,7 @@ jobs:
             image_name: todo-back
             dockerfile: .
             build_args: ""
-            
+
           - name: frontend
             image_name: todo-front
             dockerfile: .
