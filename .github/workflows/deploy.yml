@@ -62,7 +62,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd dev-less
+            cd todo-app
 
             # Берём имя образа из output предыдущего job'а — не дублируем
             sed -i "s|^APP_VERSION=.*|APP_VERSION=sha-${{ github.sha }}|" .env.development.compose
