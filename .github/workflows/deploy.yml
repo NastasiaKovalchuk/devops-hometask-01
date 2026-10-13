@@ -18,6 +18,7 @@ jobs:
             image_name: todo-back
             dockerfile: .
             build_args: ""
+            
           - name: frontend
             image_name: todo-front
             dockerfile: .
