@@ -19,7 +19,6 @@ jobs:
             dockerfile: back/Dockerfile
             context: back
             build_args: ""
-
           - name: frontend
             image_name: todo-front
             dockerfile: front/Dockerfile
@@ -87,7 +86,7 @@ jobs:
     needs: [checks, build, deploy, verify]
     if: always()
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Send Telegram Notification
         run: |
