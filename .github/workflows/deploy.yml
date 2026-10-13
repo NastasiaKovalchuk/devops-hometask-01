@@ -16,12 +16,12 @@ jobs:
         include:
           - name: backend
             image_name: todo-back
-            dockerfile: .
+            dockerfile: back/Dockerfile
             build_args: ""
 
           - name: frontend
             image_name: todo-front
-            dockerfile: .
+            dockerfile: front/Dockerfile
             build_args: "--build-arg VITE_API_URL=${{ vars.VITE_API_URL }}"
 
     steps:
@@ -41,10 +41,11 @@ jobs:
           docker buildx build \
             --platform linux/amd64 \
             ${{ matrix.build_args }} \
+            -f ${{ matrix.dockerfile }} \
             -t $IMAGE_SHA \
             -t $IMAGE_LATEST \
             --push \
-            ${{ matrix.dockerfile }}
+            ${{ matrix.context }}
 
 
   deploy:
